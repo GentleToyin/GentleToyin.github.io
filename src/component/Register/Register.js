@@ -1,7 +1,7 @@
 import React from 'react';
 
 
-const Register = ({onRouteChange}) =>{
+const Register = ({onRouteChange, onRegisterSubmit, nameInput}) =>{
 	return(
 	<article className="br3 ba b--black-10 mv4 w-100 w-50-m w-25-1 mw5 shadow-5 center">
 	<main className="pa4 black-80">
@@ -10,7 +10,7 @@ const Register = ({onRouteChange}) =>{
 	      <legend className="f2 fw6 ph0 mh0">Register</legend>
 	      <div className="mt3">
 	        <label className="db fw6 lh-copy f6" htmlFor="name">Name</label>
-	        <input className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="text" name="name"  id="name"/>
+	        <input className="pa2 input-reset ba bg-transparent hover-bg-black hover-white w-100" type="text" name="name"  id="name" onChange = {nameInput}/>
 	      </div>
 	      <div className="mt3">
 	        <label className="db fw6 lh-copy f6" htmlFor="email-address">Email</label>
@@ -23,7 +23,7 @@ const Register = ({onRouteChange}) =>{
 	    </fieldset>
 	    <div className="">
 	      <input
-	      onClick={() => onRouteChange('home')} 
+	      onClick={() => {onRouteChange('home'); onRegisterSubmit();}} 
 	      className="b ph3 pv2 input-reset ba b--black bg-transparent grow pointer f6 dib" 
 	      type="submit" 
 	      value="Register"/>

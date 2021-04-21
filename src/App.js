@@ -36,7 +36,9 @@ class App extends Component {
       imageURL:'',
       box:{},
       route:'SignIn',
-      isSignedIn:false
+      isSignedIn:false,
+      userName:''
+
     }
   }
 
@@ -60,8 +62,16 @@ class App extends Component {
     this.setState({box: box})
   }
 
+  onRegisterSubmit = () =>{
+    this.setState({userName: this.state.name});
+  }
+
   onInputChange = (event) =>{
    this.setState({input: event.target.value});
+  }
+
+  nameInput = (event) =>{
+    this.setState({name: event.target.value});
   }
 
   onButtonSubmit =() =>{
@@ -83,7 +93,7 @@ class App extends Component {
   }
 
   render(){
-   const { isSignedIn, imageURL, route, box } = this.state;
+   const { isSignedIn, imageURL, route, box, userName } = this.state;
   return (
     <div className="App">
     <Particles className='particles'
@@ -93,7 +103,7 @@ class App extends Component {
      { route==='home'
      ? <div> 
           <Logo />
-          <Rank />
+          <Rank userName={userName} />
           <ImageLinkForm 
             onInputChange={this.onInputChange} 
             onButtonSubmit={this.onButtonSubmit}/>
@@ -102,7 +112,10 @@ class App extends Component {
     :(
       route==='SignIn'
         ? <SignIn onRouteChange={this.onRouteChange} />
-        : <Register onRouteChange={this.onRouteChange} />
+        : <Register 
+            onRegisterSubmit={this.onRegisterSubmit}
+            nameInput={this.nameInput}
+            onRouteChange={this.onRouteChange} />
     )
    
     }
